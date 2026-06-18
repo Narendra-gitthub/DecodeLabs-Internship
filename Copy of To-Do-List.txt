@@ -1,0 +1,75 @@
+"""
+Project 1: The To-Do List
+
+Goal:
+    Build a program where users can add tasks to a list
+    and view them.
+
+Key Skill:
+    Concepts of list and loop.
+"""
+
+
+def show_menu():
+    """OUTPUT: tell the user what they can do."""
+    print("\n" + "-" * 32)
+    print("          TO-DO LIST")
+    print("-" * 32)
+    print("1. Add a task")
+    print("2. View all tasks")
+    print("3. Exit")
+
+
+def add_task(tasks):
+    """
+    INPUT + PROCESS: read a task from the user and store it.
+
+    """
+    new_task = input("Enter a new task: ").strip()
+
+    if new_task == "":
+        print("A task can't be empty - nothing was added.")
+        return
+
+    tasks.append(new_task)
+    print(f"Added: '{new_task}'")
+
+
+def view_tasks(tasks):
+    """
+    OUTPUT: display every task currently held in memory.
+
+    """
+    print("\n--- YOUR TASKS ---")
+
+    if not tasks:
+        print("(empty - add a task to get started)")
+        return
+
+    for position, task in enumerate(tasks, start=1):
+        print(f"{position}. {task}")
+
+
+def main():
+    """
+    Entry point. my_tasks is the single list holding every task.
+    """
+    my_tasks = []
+
+    while True:
+        show_menu()
+        choice = input("Choose an option (1-3): ").strip()
+
+        if choice == "1":
+            add_task(my_tasks)
+        elif choice == "2":
+            view_tasks(my_tasks)
+        elif choice == "3":
+            print("End")
+            break
+        else:
+            print("Please enter 1, 2, or 3.")
+
+
+if __name__ == "__main__":
+    main()
